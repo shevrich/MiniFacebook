@@ -1,0 +1,27 @@
+﻿@using FB050317.Models
+@using Facebook.Data
+@model ImagesVM
+
+<div class="container">
+    <strong style="font-size: larger">Images Liked By: @Model.User.FirstName @Model.User.LastName</strong>
+    <br />
+    <table class="table table-bordered table-hover table-striped liked">
+        <tr>
+            <th>Image</th>
+            <th>Uploaded By</th>
+            <th>View Count</th>
+            <th>Likes Count</th>
+            <th>Date Uploaded</th>
+        </tr>
+        @foreach (Image i in Model.Likes)
+        {
+            <tr>
+                <td><img src="/Images/@i.FileName" height="100"/></td>
+                <td>@i.FirstName @i.LastName</td>
+                <td>@i.Views</td>
+                <td>@i.LikesCount</td>
+                <td>@i.DateUploaded</td>
+            </tr>
+        }
+    </table>
+</div>

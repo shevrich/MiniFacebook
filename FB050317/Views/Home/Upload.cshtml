@@ -1,0 +1,6 @@
+﻿@using FB050317.Models;
+@model ImagesVM
+
+<p>Thank You @Model.Image.FirstName @Model.Image.LastName for Uploading an Image!!</p>
+<br />
+<p>Share this link with your friends: <a href="/home/ViewImage?Id=@Model.Image.Id">http://localhost:62812/home/ViewImage?Id=@Model.Image.Id</a></p>

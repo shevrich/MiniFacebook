@@ -1,0 +1,131 @@
+﻿@using FB050317.Models
+@model ImagesVM
+
+
+@if(Model.User != null)
+{
+    <p style="font-size: large">Welcome Back @Model.User.FirstName @Model.User.LastName!! <a href="/home/liked?Id=@Model.User.Id">Click Here</a> to view your liked images.</p>
+    <a href="/home/logout"><h3>Logout</h3></a>
+}
+else
+{
+    <div class="form-inline">
+        <div class="form-group">
+            <button class="btn btn-primary" id="register">Sign Up</button>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" id="login">Sign In</button>
+        </div>
+    </div>
+}
+
+<br />
+<form action="/Home/Upload" method="post" enctype="multipart/form-data" class="form-inline">
+        <div class="form-group">
+            <input type="text" name="FirstName" class="form-control" placeholder="First Name" />
+        </div>
+        <div class="form-group">
+                <input type="text" name="LastName" class="form-control" placeholder="Last Name" />
+        </div>
+        <div class="form-group">
+            <input type="file" name="file" class="form-control" />
+            <input type="hidden" name="DateUploaded" value="@DateTime.Now"/>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary">Upload</button>
+        </div>
+</form>
+<br />
+<div class="container">
+        <strong style="font-size: larger">Most Popular</strong>
+        <br />
+        <table class="table table-bordered table-hover table-striped popular">
+            <tr>
+                <th>Image</th>
+                <th>Uploaded By</th>
+                <th>View Count</th>
+                <th>Date Uploaded</th>
+            </tr>
+        </table>
+</div>
+
+<div class="container">
+        <strong style="font-size: larger">Most Recent</strong>
+        <br />
+        <table class="table table-bordered table-hover table-striped recent">
+            <tr>
+                <th>Image</th>
+                <th>Uploaded By</th>
+                <th>View Count</th>
+                <th>Date Uploaded</th>
+            </tr>
+        </table>
+</div>
+
+<div class="container">
+        <strong style="font-size: larger">Most Liked</strong>
+        <br />
+        <table class="table table-bordered table-hover table-striped liked">
+            <tr>
+                <th>Image</th>
+                <th>Uploaded By</th>
+                <th>View Count</th>
+                <th>Likes Count</th>
+                <th>Date Uploaded</th>
+            </tr>
+        </table>
+</div>
+
+<div class="modal fade register-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <form method="post" action="/home/register">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Register</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" name="FirstName" class="form-control" placeholder="First Name" />
+                    <br />
+                    <input type="text" name="LastName" class="form-control" placeholder="Last Name" />
+                    <br />
+                    <input type="text" name="UserName" class="form-control" placeholder="User Name" />
+                    <br />
+                    <input type="text" name="Password" class="form-control" placeholder="Password" />
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary">Register</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade login-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <form method="post" action="/home/login">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" name="UserName" class="form-control" placeholder="User Name" />
+                    <br />
+                    <input type="text" name="Password" class="form-control" placeholder="Password" />
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary">Login</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+@section scripts{
+    <script src="/Scripts/Index.js"></script>
+}

@@ -1,0 +1,24 @@
+﻿@using FB050317.Models;
+@model ImagesVM 
+
+<div class="container">
+    <div class="col-md-6 col-md-offset-3">
+        <p>Image Uploaded by @Model.Image.FirstName @Model.Image.LastName on @Model.Image.DateUploaded.ToShortDateString()</p>
+        <br />
+        <img src="/Images/@Model.Image.FileName" height="300" />
+        <br />
+        <p>View Count: @Model.Image.Views</p>
+        <br />
+        <p id="like">Likes Count: @Model.Image.LikesCount</p>
+        <br />
+        @if (Model.User != null)
+        {
+            <button disabled class="btn btn-primary" data-UserId="@Model.User.Id" data-ImageId="@Model.Image.Id"><span class="glyphicon glyphicon-thumbs-up" aria-hidden=true></span>Like It!</button>
+        }
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="/Scripts/Image.js"></script>
+}
